@@ -1,16 +1,16 @@
-import { Inter } from 'next/font/google';
+import { Public_Sans } from 'next/font/google';
 import './globals.css';
 import ClientLayout from './client-layout';
 
-const inter = Inter({
-  variable: '--font-inter',
+const publicSans = Inter({
+  variable: '--font-public-sans',
   subsets: ['latin'],
 });
 
 export const metadata = {
-  title: 'BMI Calculator',
+  title: 'Personal Finance Calculator',
   description:
-    'Calculate your Body Mass Index (BMI) with our easy-to-use calculator. Get instant results and understand your body composition better with this simple yet effective BMI measurement tool.',
+    'Track your personal finances with our comprehensive calculator. Monitor expenses, income, and savings goals with this intuitive financial management tool.',
   icons: {
     icon: '/logo.svg',
   },
@@ -19,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${publicSans.className} antialiased`}>
         <ClientLayout>
           <main className="block w-full relative">{children}</main>
         </ClientLayout>

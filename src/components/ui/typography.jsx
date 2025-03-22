@@ -5,18 +5,17 @@ import { cva } from 'class-variance-authority';
 export const typography = cva('text-blue-900', {
   variants: {
     type: {
-      'preset-1': 'font-semibold text-[64px] leading-[110%] -tracking-[5%]',
-      'preset-2': 'font-semibold text-[48px] leading-[110%] tracking-[-5%]',
-      'preset-3': 'font-semibold text-[32px] leading-[110%] tracking-[-5%]',
-      'preset-4': 'font-semibold text-[24px] leading-[120%] tracking-[-5%]',
-      'preset-5': 'font-semibold text-[20px] leading-[120%] tracking-[-5%]',
-      'preset-6':
-        'text-grey-500 font-semibold text-[16px] leading-[150%] tracking-[-0%]',
-      'preset-7': 'font-normal text-[14px] leading-[150%] tracking-[-0%]',
+      'preset-1': 'font-bold text-[32px] leading-[120%] tracking-[0px]',
+      'preset-2': 'font-bold text-[20px] leading-[120%] tracking-[0px]',
+      'preset-3': 'font-bold text-[16px] leading-[150%] tracking-[0px]',
+      'preset-4': 'font-normal text-[14px] leading-[150%] tracking-[0px]',
+      'preset-4-bold': 'font-bold text-[14px] leading-[150%] tracking-[0px]',
+      'preset-5': 'font-normal text-[12px] leading-[150%] tracking-[0px]',
+      'preset-5-bold': 'font-bold text-[12px] leading-[150%] tracking-[0px]',
     },
   },
   defaultVariants: {
-    type: 'preset-7',
+    type: 'preset-5',
   },
 });
 
