@@ -37,12 +37,5 @@ export default function Home() {
     router.push(`/jobs/${company.id}`);
   };
 
-  return (
-    <div className="flex flex-col">
-      <HeroSection />
-      <BMIResultSection />
-      <TipsSection />
-      <LimitsSection />
-    </div>
-  );
+  return <div className="flex flex-col"></div>;
 }
