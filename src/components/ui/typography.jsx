@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 
-export const typography = cva('text-blue-900', {
+export const typography = cva('', {
   variants: {
     type: {
       'preset-1': 'font-bold text-[32px] leading-[120%] tracking-[0px]',

@@ -4,10 +4,7 @@ import { useContext, useState } from 'react';
 import { Typography } from '@/components/ui/typography';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import HeroSection from '@/components/ui/hero-section';
-import BMIResultSection from '@/components/ui/bmi-result-section';
-import TipsSection from '@/components/ui/tips-section';
-import LimitsSection from '@/components/ui/limits-section';
+import { AppSidebar } from '@/components/ui/app-sidebar';
 
 export default function Home() {
   const router = useRouter();
@@ -37,5 +34,12 @@ export default function Home() {
     router.push(`/jobs/${company.id}`);
   };
 
-  return <div className="flex flex-col"></div>;
+  return (
+    <div className="flex flex-col border">
+      <AppSidebar />
+      <div className="flex flex-col flex-1 overflow-y-auto">
+        <div className="flex flex-col flex-1 bg-gray">hello world</div>
+      </div>
+    </div>
+  );
 }

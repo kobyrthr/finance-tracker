@@ -5,6 +5,15 @@ body {
 }
 
 @theme {
+  --spacing-500: 40px;
+  --spacing-400: 32px;
+  --spacing-300: 24px;
+  --spacing-250: 20px;
+  --spacing-200: 16px;
+  --spacing-150: 12px;
+  --spacing-100: 8px;
+  --spacing-50: 4px;
+
   --color-beige-500: hsl(23 6% 57%);
   --color-beige-100: hsl(30 36% 96%);
   --color-grey-900: hsl(252 7% 13%);
@@ -35,8 +44,6 @@ body {
   --color-blue-500: hsl(227 92% 58%);
   --color-blue-300: hsl(209 69% 82%);
   --color-blue-100: hsl(228 94% 94%);
-  --color-grey-500: hsl(215 17% 45%);
-  --color-grey-300: hsl(215 43% 77%);
   --color-gradient-1: hsl(183 95% 92%);
   --color-gradient-2: hsl(216 95% 92%);
   --color-success: hsl(160 67% 52%);

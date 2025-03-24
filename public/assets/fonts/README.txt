@@ -1,21 +1,21 @@
-Inter Variable Font
-===================
+Public Sans Variable Font
+=========================
 
-This download contains Inter as both a variable font and static fonts.
+This download contains Public Sans as both variable fonts and static fonts.
 
-Inter is a variable font with these axes:
-  slnt
+Public Sans is a variable font with this axis:
   wght
 
-This means all the styles are contained in a single file:
-  Inter-VariableFont_slnt,wght.ttf
+This means all the styles are contained in these files:
+  PublicSans-VariableFont_wght.ttf
+  PublicSans-Italic-VariableFont_wght.ttf
 
 If your app fully supports variable fonts, you can now pick intermediate styles
 that aren’t available as static fonts. Not all apps support variable fonts, and
-in those cases you can use the static font files for Inter:
+in those cases you can use the static font files for Public Sans:
 
-  static/Inter-Regular.ttf
-  static/Inter-SemiBold.ttf
+  static/PublicSans-Regular.ttf
+  static/PublicSans-Bold.ttf
 
 Get started
 -----------

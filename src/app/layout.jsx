@@ -1,8 +1,9 @@
 import { Public_Sans } from 'next/font/google';
 import './globals.css';
 import ClientLayout from './client-layout';
+import { SidebarProvider } from '@/components/ui/sidebar';
 
-const publicSans = Inter({
+const publicSans = Public_Sans({
   variable: '--font-public-sans',
   subsets: ['latin'],
 });
@@ -21,7 +22,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${publicSans.className} antialiased`}>
         <ClientLayout>
-          <main className="block w-full relative">{children}</main>
+          <SidebarProvider>
+            <main className="block w-full relative">{children}</main>
+          </SidebarProvider>
         </ClientLayout>
       </body>
     </html>
