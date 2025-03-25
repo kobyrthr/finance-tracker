@@ -3,8 +3,8 @@
 import * as React from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
-import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { CaretDown } from '@phosphor-icons/react';
 
 const Select = SelectPrimitive.Root;
 
@@ -17,12 +17,12 @@ const SelectTrigger = React.forwardRef(
     <SelectPrimitive.Trigger
       ref={ref}
       className={cn(
-        'font-bold flex h-12 w-full items-center data-[state=open]:border-color-01 justify-between whitespace-nowrap rounded-md border border-color-05 hover:border-color-01 focu-visibles:border-color-01 bg-popover px-5 py-4 text-[15px] placeholder:text-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
+        'font-bold flex h-12 w-full items-center justify-between whitespace-nowrap rounded-md border border-grey-500 hover:border-grey-900  bg-white px-4 py-3 text-[15px] placeholder:text-beige-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
         className
       )}
       {...props}
     >
-      {children}
+      {children} <CaretDown weight="fill" className="h-4 w-4 text-grey-900" />
     </SelectPrimitive.Trigger>
   )
 );

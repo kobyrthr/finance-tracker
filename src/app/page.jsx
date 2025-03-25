@@ -6,6 +6,15 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { AppSidebar } from '@/components/ui/app-sidebar';
 import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 export default function Home() {
   const router = useRouter();
@@ -44,6 +53,23 @@ export default function Home() {
           <Button variant="secondary">Placeholder</Button>
           <Button variant="tertiary">Placeholder</Button>
           <Button variant="destructive">Placeholder</Button>
+        </div>
+
+        <div className="">
+          <Select>
+            <SelectTrigger className="w-[320px] text-beige-500">
+              <SelectValue placeholder="Select a fruit" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="apple">Apple</SelectItem>
+                <SelectItem value="banana">Banana</SelectItem>
+                <SelectItem value="blueberry">Blueberry</SelectItem>
+                <SelectItem value="grapes">Grapes</SelectItem>
+                <SelectItem value="pineapple">Pineapple</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </div>
