@@ -5,6 +5,7 @@ import { Typography } from '@/components/ui/typography';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { AppSidebar } from '@/components/ui/app-sidebar';
+import { Button } from '@/components/ui/button';
 
 export default function Home() {
   const router = useRouter();
@@ -35,10 +36,15 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col border">
+    <div className="flex flex-row border">
       <AppSidebar />
-      <div className="flex flex-col flex-1 overflow-y-auto">
-        <div className="flex flex-col flex-1 bg-gray">hello world</div>
+      <div className="pl-[300px] flex flex-col flex-1 overflow-y-auto">
+        <div className="">
+          <Button variant="primary">Placeholder</Button>
+          <Button variant="secondary">Placeholder</Button>
+          <Button variant="tertiary">Placeholder</Button>
+          <Button variant="destructive">Placeholder</Button>
+        </div>
       </div>
     </div>
   );
