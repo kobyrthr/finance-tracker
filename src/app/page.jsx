@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
 
 export default function Home() {
   const router = useRouter();
@@ -58,7 +59,7 @@ export default function Home() {
         <div className="">
           <Select>
             <SelectTrigger className="w-[320px] text-beige-500">
-              <SelectValue placeholder="Select a fruit" />
+              <SelectValue placeholder="Placeholder" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
@@ -70,6 +71,10 @@ export default function Home() {
               </SelectGroup>
             </SelectContent>
           </Select>
+        </div>
+
+        <div className="">
+          <Input placeholder="Placeholder" />
         </div>
       </div>
     </div>
