@@ -1,8 +1,6 @@
 'use client';
-import { CompanyContext } from '@/context/company-context';
+import { TransactionsContext } from '@/context/transactions-context';
 import { useContext, useState } from 'react';
-import { Typography } from '@/components/ui/typography';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { AppSidebar } from '@/components/ui/app-sidebar';
 import { Button } from '@/components/ui/button';
@@ -11,7 +9,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
@@ -19,17 +16,17 @@ import { Input } from '@/components/ui/input';
 
 export default function Home() {
   const router = useRouter();
-  const { searchValue, companies, setCompany, selectedStatuses } =
-    useContext(CompanyContext);
+  const { searchValue, transactions, setTransaction, selectedStatuses } =
+    useContext(TransactionsContext);
   const [itemsToShow, setItemsToShow] = useState(9);
-  const filteredData = companies.filter((company) => {
+  const filteredData = transactions.filter((transaction) => {
     const matchesStatus = selectedStatuses
-      ? selectedStatuses.includes(company?.contract)
+      ? selectedStatuses.includes(transaction?.contract)
       : true;
 
-    const matchesSearch = searchValue
-      ? company.company.toLowerCase().includes(searchValue.toLowerCase())
-      : true;
+    const matchesSearch = true;
+    // ? transaction.company.toLowerCase().includes(searchValue.toLowerCase())
+    // : true;
 
     return matchesStatus && matchesSearch;
   });
@@ -40,9 +37,9 @@ export default function Home() {
     setItemsToShow((prev) => prev + 6);
   };
 
-  const handleClick = (company) => {
-    setCompany(company);
-    router.push(`/jobs/${company.id}`);
+  const handleClick = (transaction) => {
+    setCompany(transaction);
+    router.push(`/transaction/${transaction.id}`);
   };
 
   return (

@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { CompanyContext } from '@/context/company-context';
+import { TransactionsContext } from '@/context/transactions-context';
 import DATA from '@/../public/data.json';
 
 export default function ClientLayout({ children }) {
@@ -10,35 +10,35 @@ export default function ClientLayout({ children }) {
     'Part Time',
     'Freelance',
   ]);
-  const [company, setCompany] = useState(null);
+  const [transaction, setTransaction] = useState(null);
   const [searchValue, setSearchValue] = useState('');
-  const [companies, setCompanies] = useState(DATA);
+  const [transactions, setTransactions] = useState(DATA?.transactions ?? []);
 
-  const updateCompany = (inv) => {
+  const updateTransaction = (inv) => {
     const newCompany = { ...invoice, ...inv };
 
-    setCompany(newInvoice);
-    setCompanies(
-      companies.map((comp) => (comp.id === comp.id ? newCompany : comp))
+    setTransaction(newInvoice);
+    setTransactions(
+      transactions.map((comp) => (comp.id === comp.id ? newCompany : comp))
     );
   };
 
   return (
-    <CompanyContext.Provider
+    <TransactionsContext.Provider
       value={{
-        companies,
-        company,
-        setCompany,
-        setCompanies,
+        transactions,
+        transaction,
+        setTransaction,
+        setTransactions,
         statuses,
         selectedStatuses,
         setSelectedStatuses,
-        updateCompany,
+        updateTransaction,
         searchValue,
         setSearchValue,
       }}
     >
       {children}
-    </CompanyContext.Provider>
+    </TransactionsContext.Provider>
   );
 }

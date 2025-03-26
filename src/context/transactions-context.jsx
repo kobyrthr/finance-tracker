@@ -1,16 +1,16 @@
 'use client';
 import { createContext } from 'react';
 
-export const CompanyContext = createContext({
+export const TransactionsContext = createContext({
   searchValue: '',
   setSearchValue: () => {},
-  companies: [],
-  company: null,
-  setCompany: () => {},
-  setCompanies: () => {},
+  transactions: [],
+  transaction: null,
+  setTransaction: () => {},
+  setTransactions: () => {},
   selectedStatuses: [],
   statuses: [],
   selectedStatuses: [],
   setSelectedStatuses: () => {},
-  updateCompany: (invoice) => {},
+  updateTransaction: (invoice) => {},
 });

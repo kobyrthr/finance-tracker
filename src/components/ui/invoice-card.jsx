@@ -6,7 +6,7 @@ import { Badge } from './badge';
 import IconArrowRight from '@/../public/icon-arrow-right.svg';
 import Image from 'next/image';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { CompanyContext } from '@/context/company-context';
+import { CompanyContext } from '@/context/transactions-context';
 
 const InvoiceCard = ({ invoice }) => {
   const router = useRouter();
