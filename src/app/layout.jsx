@@ -23,7 +23,9 @@ export default function RootLayout({ children }) {
       <body className={`${publicSans.className} antialiased`}>
         <ClientLayout>
           <SidebarProvider>
-            <main className="block w-full relative">{children}</main>
+            <main className="block w-full relative bg-beige-100">
+              {children}
+            </main>
           </SidebarProvider>
         </ClientLayout>
       </body>
