@@ -1,7 +1,6 @@
 'use client';
 import { TransactionsContext } from '@/context/transactions-context';
 import { useContext, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { AppSidebar } from '@/components/ui/app-sidebar';
 import { Button } from '@/components/ui/button';
 import {
@@ -24,18 +23,16 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import Image from 'next/image';
+import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 
 export default function Home() {
-  const router = useRouter();
   const {
     searchValue,
     setSearchValue,
     transactions,
-    setTransaction,
     selectedStatuses,
     setSelectedStatuses,
   } = useContext(TransactionsContext);
-  const [itemsToShow, setItemsToShow] = useState(9);
   const [sortBy, setSortBy] = useState('latest');
 
   const filteredData = transactions
@@ -59,10 +56,57 @@ export default function Home() {
       }
     });
 
-  const currentItems = filteredData.slice(0, itemsToShow);
-  const hasMore = itemsToShow < filteredData.length;
-  const handleLoadMore = () => {
-    setItemsToShow((prev) => prev + 6);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  const getCurrentPageData = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredData.slice(startIndex, endIndex);
+  };
+
+  const getPageNumbers = () => {
+    const pageNumbers = [];
+    const maxVisiblePages = 10;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+
+    return pageNumbers;
+  };
+
+  const handlePageChange = (page) => {
+    // Ensure page is within valid range
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+
+      // Scroll to top of table when changing pages
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   const handleSort = (value) => {
@@ -73,6 +117,11 @@ export default function Home() {
     if (!selectedStatuses?.includes(status)) {
       setSelectedStatuses([status]);
     }
+  };
+
+  const handleSearch = (e) => {
+    setSearchValue(e.target.value);
+    setCurrentPage(1);
   };
 
   return (
@@ -88,7 +137,7 @@ export default function Home() {
               <Input
                 placeholder="Search transaction"
                 className="max-w-[300px]"
-                onChange={(e) => setSearchValue(e.target.value)}
+                onChange={handleSearch}
               />
               <div className="flex gap-300">
                 <div className="flex items-center gap-100 w-fit">
@@ -164,7 +213,7 @@ export default function Home() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {filteredData.map((transaction, index) => (
+                  {getCurrentPageData().map((transaction, index) => (
                     <TableRow className="py-4" key={transaction.name + index}>
                       <TableCell className="pl-2">
                         <div className="flex items-center gap-200">
@@ -219,17 +268,53 @@ export default function Home() {
               </Table>
             </div>
 
-            <div className="flex justify-center gap-100 mt-300">
-              <Button variant="tertiary">Prev</Button>
-              {[1, 2, 3, 4, 5].map((page) => (
-                <Button
-                  key={page}
-                  variant={page === 2 ? 'primary' : 'tertiary'}
+            <div className="w-full flex justify-between gap-100 mt-300">
+              <Button
+                onClick={handlePrevPage}
+                variant="outline"
+                className="group px-4 py-2.5 gap-4"
+              >
+                <CaretLeft
+                  weight="fill"
+                  className="text-beige-500 group-hover:text-white"
+                  size={16}
+                />{' '}
+                <Typography
+                  type="preset-4"
+                  className="group-hover:text-white text-grey-900"
                 >
-                  {page}
-                </Button>
-              ))}
-              <Button variant="tertiary">Next</Button>
+                  Prev
+                </Typography>
+              </Button>
+              <div className="flex gap-2">
+                {getPageNumbers().map((page) => (
+                  <Button
+                    key={page}
+                    variant={page === currentPage ? 'primary' : 'outline'}
+                    className="group px-4 py-2.5 gap-4"
+                    onClick={() => handlePageChange(page)}
+                  >
+                    {page}
+                  </Button>
+                ))}
+              </div>
+              <Button
+                onClick={handleNextPage}
+                variant="outline"
+                className="group px-4 py-2.5 gap-4"
+              >
+                <CaretRight
+                  weight="fill"
+                  className="text-beige-500 group-hover:text-white"
+                  size={16}
+                />{' '}
+                <Typography
+                  type="preset-4"
+                  className="group-hover:text-white text-grey-900"
+                >
+                  Next
+                </Typography>
+              </Button>
             </div>
           </CardContent>
         </Card>

@@ -4,12 +4,7 @@ import { TransactionsContext } from '@/context/transactions-context';
 import DATA from '@/../public/data.json';
 
 export default function ClientLayout({ children }) {
-  const statuses = ['Full Time', 'Part Time', 'Freelance'];
-  const [selectedStatuses, setSelectedStatuses] = useState([
-    'Full Time',
-    'Part Time',
-    'Freelance',
-  ]);
+  const [selectedStatuses, setSelectedStatuses] = useState(['all']);
   const [transaction, setTransaction] = useState(null);
   const [searchValue, setSearchValue] = useState('');
   const [transactions, setTransactions] = useState(DATA?.transactions ?? []);
@@ -30,7 +25,6 @@ export default function ClientLayout({ children }) {
         transaction,
         setTransaction,
         setTransactions,
-        statuses,
         selectedStatuses,
         setSelectedStatuses,
         updateTransaction,
