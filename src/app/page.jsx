@@ -140,7 +140,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-row border">
+    <div className="size-full flex flex-row">
       <AppSidebar />
       <div className="lg:pl-[340px] flex flex-col flex-1 overflow-y-auto p-200 md:p-500">
         <Typography type="preset-1" className="mb-300" asChild>
@@ -273,8 +273,8 @@ export default function Home() {
                 </TableHeader>
                 <TableBody>
                   {getCurrentPageData().map((transaction, index) => (
-                    <TableRow className="py-4" key={transaction.name + index}>
-                      <TableCell className="p-0 sm:pl-2">
+                    <TableRow className="" key={transaction.name + index}>
+                      <TableCell className="p-0 sm:pl-2 py-4 h-fit">
                         <div className="flex items-center gap-100 sm:gap-200">
                           <div className="w-[40px] h-[40px] rounded-full bg-grey-100">
                             <Image
