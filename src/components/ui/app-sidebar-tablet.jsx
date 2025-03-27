@@ -8,7 +8,7 @@ import { Typography } from './typography';
 
 const AppSidebarTablet = () => {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 flex h-[72px] items-center justify-between bg-grey-900 px-300 rounded-t-lg">
+    <nav className="fixed z-50 bottom-0 left-0 right-0 flex h-[72px] items-center justify-between bg-grey-900 px-300 rounded-t-lg">
       <Link
         href="/overview"
         className="group flex flex-col items-center gap-50 text-grey-300 hover:text-grey-100"

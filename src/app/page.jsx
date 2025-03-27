@@ -160,7 +160,7 @@ export default function Home() {
                   className="text-grey-900 absolute right-5 top-1/2 -translate-y-1/2"
                 />
               </div>
-              <div className="flex gap-100 md:gap-300">
+              <div className="flex gap-100 pl-100 md:gap-300">
                 <div className="flex items-center gap-100 w-fit">
                   <Typography
                     type="preset-4"
