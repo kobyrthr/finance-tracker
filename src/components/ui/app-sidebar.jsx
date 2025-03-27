@@ -12,12 +12,6 @@ import {
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { Typography } from './typography';
-import HomeIcon from '@/../public/assets/images/icon-nav-overview.svg';
-import ArrowsUpDownIcon from '@/../public/assets/images/icon-nav-transactions.svg';
-import ChartPieIcon from '@/../public/assets/images/icon-nav-budgets.svg';
-import PotsIcon from '@/../public/assets/images/icon-nav-pots.svg';
-import WalletIcon from '@/../public/assets/images/icon-nav-recurring-bills.svg';
-import MinimizeMenuIcon from '@/../public/assets/images/icon-minimize-menu.svg';
 import LogoSmallIcon from '@/../public/assets/images/logo-small.svg';
 import LogoLargeIcon from '@/../public/assets/images/logo-large.svg';
 import { Button } from './button';

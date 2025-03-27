@@ -13,16 +13,22 @@ const SelectGroup = SelectPrimitive.Group;
 const SelectValue = SelectPrimitive.Value;
 
 const SelectTrigger = React.forwardRef(
-  ({ className, children, ...props }, ref) => (
+  ({ hideCaret = false, className, children, ...props }, ref) => (
     <SelectPrimitive.Trigger
       ref={ref}
       className={cn(
-        'cursor-pointer font-bold flex h-12 w-full items-center justify-between whitespace-nowrap rounded-md border border-grey-500 hover:border-grey-900  bg-white px-5 py-3 text-[15px] placeholder:text-beige-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
+        'cursor-pointer font-bold relative flex h-12 w-full items-center justify-between whitespace-nowrap rounded-md border border-grey-500 hover:border-grey-900  bg-white px-5 py-3 text-[15px] placeholder:text-beige-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
         className
       )}
       {...props}
     >
-      {children} <CaretDown weight="fill" className="h-4 w-4 text-grey-900" />
+      {children}
+      <CaretDown
+        weight="fill"
+        className={cn('h-4 w-4 text-grey-500 inline-block', {
+          hidden: hideCaret,
+        })}
+      />
     </SelectPrimitive.Trigger>
   )
 );

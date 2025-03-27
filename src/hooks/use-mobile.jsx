@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-const MOBILE_BREAKPOINT = 768;
+const MOBILE_BREAKPOINT = 1024;
 const SM_MOBILE_BREAKPOINT = 640;
 
-export function useIsMobile(version = 'small') {
+export function useIsMobile(version = 'large') {
   const [isMobile, setIsMobile] = React.useState(undefined);
   const BREAKPOINT =
     version === 'small' ? SM_MOBILE_BREAKPOINT : MOBILE_BREAKPOINT;
