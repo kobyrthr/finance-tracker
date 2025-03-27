@@ -27,6 +27,7 @@ import {
   CaretLeft,
   CaretRight,
   Funnel,
+  MagnifyingGlass,
   SortAscending,
 } from '@phosphor-icons/react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -148,11 +149,17 @@ export default function Home() {
         <Card>
           <CardContent className="p-5 sm:p-300">
             <div className="flex items-center justify-between mb-300">
-              <Input
-                placeholder="Search transaction"
-                className="min-w-[170px] max-w-[300px] mr-4"
-                onChange={handleSearch}
-              />
+              <div className="relative">
+                <Input
+                  placeholder="Search transaction"
+                  className="min-w-[170px] max-w-[300px] mr-4"
+                  onChange={handleSearch}
+                />
+                <MagnifyingGlass
+                  size={16}
+                  className="text-grey-900 absolute right-5 top-1/2 -translate-y-1/2"
+                />
+              </div>
               <div className="flex gap-100 md:gap-300">
                 <div className="flex items-center gap-100 w-fit">
                   <Typography
