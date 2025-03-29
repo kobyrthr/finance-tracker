@@ -101,16 +101,10 @@ export function AppSidebar({ className = '' }) {
                   <a
                     href={item.url}
                     className={cn({
-                      'text-grey-900 hover:text-grey-500 relative':
+                      'text-grey-900 hover:text-grey-500 border-l-4 !pl-7 border-green':
                         item.url === pathname,
                     })}
                   >
-                    <div
-                      className={cn({
-                        'absolute bg-green left-0 h-full w-1 z-50':
-                          item.url === pathname,
-                      })}
-                    ></div>
                     <item.icon
                       className={cn({ 'text-green': item.url === pathname })}
                     />
