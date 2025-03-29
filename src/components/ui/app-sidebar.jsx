@@ -1,3 +1,4 @@
+'use client';
 import {
   Sidebar,
   SidebarContent,
@@ -23,11 +24,12 @@ import { NavBudgetsIcon } from '../icons/nav-budgets-icon';
 import { NavPotsIcon } from '../icons/nav-pots-icon';
 import { NavRecurringBillsIcon } from '../icons/nav-recurring-bills-icon';
 import { NavMinimizeMenu } from '../icons/nav-minimize-menu';
+import { usePathname } from 'next/navigation';
 
 export function AppSidebar({ className = '' }) {
   const { toggleSidebar, state } = useSidebar();
   const isMobile = useIsMobile();
-
+  const pathname = usePathname();
   const items = [
     {
       title: 'Overview',
@@ -89,10 +91,29 @@ export function AppSidebar({ className = '' }) {
         <SidebarGroup className="p-0">
           <SidebarMenu>
             {items.map((item) => (
-              <SidebarMenuItem key={item.title} className="py-4 px-8">
-                <SidebarMenuButton asChild variant="ghost">
-                  <a href={item.url}>
-                    <item.icon />
+              <SidebarMenuItem key={item.title} className=" pr-8">
+                <SidebarMenuButton
+                  asChild
+                  variant="ghost"
+                  className="relative"
+                  isActive={item.url === pathname}
+                >
+                  <a
+                    href={item.url}
+                    className={cn({
+                      'text-grey-900 hover:text-grey-500 relative':
+                        item.url === pathname,
+                    })}
+                  >
+                    <div
+                      className={cn({
+                        'absolute bg-green left-0 h-full w-1 z-50':
+                          item.url === pathname,
+                      })}
+                    ></div>
+                    <item.icon
+                      className={cn({ 'text-green': item.url === pathname })}
+                    />
                     <Typography asChild type="preset-3">
                       <span>{item.title}</span>
                     </Typography>
