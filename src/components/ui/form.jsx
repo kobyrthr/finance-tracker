@@ -5,6 +5,7 @@ import { Controller, FormProvider, useFormContext } from 'react-hook-form';
 
 import { cn } from '@/lib/utils';
 import { Label } from '@/components/ui/label';
+import { Typography } from './typography';
 
 const Form = FormProvider;
 
@@ -54,17 +55,21 @@ const FormItem = React.forwardRef(({ className, ...props }, ref) => {
 });
 FormItem.displayName = 'FormItem';
 
-const FormLabel = React.forwardRef(({ className, ...props }, ref) => {
+const FormLabel = React.forwardRef(({ className, children, ...props }, ref) => {
   const { error, formItemId } = useFormField();
 
   return (
     <Label
       ref={ref}
-      className={cn(error && 'text-color-09', className)}
+      className={cn(error && 'text-grey-500', className)}
       variant="form-label"
       htmlFor={formItemId}
       {...props}
-    />
+    >
+      <Typography className="text-grey-500 mb-1" type="preset-5-bold">
+        {children}
+      </Typography>
+    </Label>
   );
 });
 FormLabel.displayName = 'FormLabel';
