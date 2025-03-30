@@ -48,7 +48,7 @@ const LoginPage = () => {
           className=" z-50"
         />
       </div>
-      <div className="relative min-w-[560px] max-xl:hidden h-[920px] rounded-xl overflow-hidden">
+      <div className="relative min-w-[560px] max-xl:hidden min-h-[920px] rounded-xl overflow-hidden">
         <Image
           src={LogoLargeIcon}
           alt="Logo"
@@ -60,6 +60,7 @@ const LoginPage = () => {
           src={IllustrationAuthentication}
           alt="Picture of the author"
           fill
+          className="object-cover object-center"
         />
         <div className="absolute bottom-10 left-10 right-10 text-white">
           <Typography asChild type="preset-1">
@@ -132,7 +133,7 @@ const LoginPage = () => {
             >
               <p>
                 Need to create an account?{' '}
-                <a href="#" className="text-primary">
+                <a href="/sign-up" className="text-primary">
                   <Typography
                     asChild
                     type="preset-4-bold"

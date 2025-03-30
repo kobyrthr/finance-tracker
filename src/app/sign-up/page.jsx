@@ -141,7 +141,7 @@ const SignUpPage = () => {
             >
               <p>
                 Already have an account?{' '}
-                <a href="#" className="text-primary">
+                <a href="/login" className="text-primary">
                   <Typography
                     asChild
                     type="preset-4-bold"
