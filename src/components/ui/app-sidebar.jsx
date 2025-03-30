@@ -63,8 +63,8 @@ export function AppSidebar({ className = '' }) {
   ) : (
     <Sidebar
       className={cn(
-        'overflow-hidden! rounded-r-[20px] border-none bg-grey-900 text-grey-300 transition-all',
-        { 'w-[300px]': state === 'expanded' },
+        'overflow-hidden! h-full relative border-none bg-grey-900 text-grey-300 transition-all',
+        { 'w-[300px] rounded-r-[20px]': state === 'expanded' },
         className
       )}
       collapsible="icon"
@@ -91,11 +91,17 @@ export function AppSidebar({ className = '' }) {
         <SidebarGroup className="p-0">
           <SidebarMenu>
             {items.map((item) => (
-              <SidebarMenuItem key={item.title} className=" pr-8">
+              <SidebarMenuItem
+                key={item.title}
+                className={cn({ 'pr-8': state === 'expanded' })}
+              >
                 <SidebarMenuButton
                   asChild
                   variant="ghost"
-                  className="relative"
+                  className={cn('relative', {
+                    'mx-auto': state === 'collapsed',
+                    '!rounded-xl': state === 'collapsed',
+                  })}
                   isActive={item.url === pathname}
                 >
                   <a
@@ -103,10 +109,14 @@ export function AppSidebar({ className = '' }) {
                     className={cn({
                       'text-grey-900 hover:text-grey-500 border-l-4 !pl-7 border-green':
                         item.url === pathname,
+                      'border-l-0':
+                        state === 'collapsed' && item.url === pathname,
                     })}
                   >
                     <item.icon
-                      className={cn({ 'text-green': item.url === pathname })}
+                      className={cn({
+                        'text-green': item.url === pathname,
+                      })}
                     />
                     <Typography asChild type="preset-3">
                       <span>{item.title}</span>
@@ -118,7 +128,7 @@ export function AppSidebar({ className = '' }) {
           </SidebarMenu>
         </SidebarGroup>
 
-        <SidebarFooter className="mt-auto px-6 pb-6">
+        <SidebarFooter className="mt-auto pb-6">
           <SidebarMenu>
             <SidebarMenuItem className="flex">
               <SidebarMenuButton asChild variant="ghost">
@@ -126,13 +136,15 @@ export function AppSidebar({ className = '' }) {
                   onClick={toggleSidebar}
                   variant="ghost"
                   className={cn(
-                    'flex items-center justify-start cursor-pointer gap-3',
+                    'flex items-center justify-start cursor-pointer gap-3 !py-2',
                     {
                       'mx-auto': state === 'collapsed',
                     }
                   )}
                 >
-                  <NavMinimizeMenu />
+                  <NavMinimizeMenu
+                    className={cn({ 'rotate-180': state === 'collapsed' })}
+                  />
                   <Typography asChild type="preset-3">
                     <span>Minimize Menu</span>
                   </Typography>

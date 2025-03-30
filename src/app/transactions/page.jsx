@@ -31,8 +31,12 @@ import {
   SortAscending,
 } from '@phosphor-icons/react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useSidebar } from '@/components/ui/sidebar';
+import { cn } from '@/lib/utils';
 
 export default function Home() {
+  const { state } = useSidebar();
+
   const {
     searchValue,
     setSearchValue,
@@ -138,11 +142,15 @@ export default function Home() {
     setSearchValue(e.target.value);
     setCurrentPage(1);
   };
-
+  console.log('debug - state', state);
   return (
-    <div className="size-full flex flex-row">
+    <div className="max-h-screen overflow-y size-full flex flex-row">
       <AppSidebar />
-      <div className="lg:pl-[340px] flex flex-col flex-1 overflow-y-auto p-200 md:p-500">
+      <div
+        className={cn(
+          'flex flex-col flex-1 overflow-y-auto p-200 md:p-500 transition'
+        )}
+      >
         <Typography type="preset-1" className="mb-300" asChild>
           <h1>Transactions</h1>
         </Typography>
