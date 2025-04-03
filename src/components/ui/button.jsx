@@ -3,9 +3,10 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
+import { LoaderIcon } from 'lucide-react';
 
 const buttonVariants = cva(
-  'cursor-pointer p-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--spacing-100)] text-[15px] font-bold transition-colors disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+  'relative cursor-pointer p-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--spacing-100)] text-[15px] font-bold transition-colors disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
@@ -32,7 +33,16 @@ const buttonVariants = cva(
 
 const Button = React.forwardRef(
   (
-    { IconLeft, className, variant, size, asChild = false, children, ...props },
+    {
+      isLoading = false,
+      IconLeft,
+      className,
+      variant,
+      size,
+      asChild = false,
+      children,
+      ...props
+    },
     ref
   ) => {
     const Comp = asChild ? Slot : 'button';
@@ -42,7 +52,11 @@ const Button = React.forwardRef(
         ref={ref}
         {...props}
       >
-        {IconLeft ? (
+        {isLoading ? (
+          <div className="absolute bg-gray-500 inset-0 flex items-center justify-center rounded-[var(--spacing-100)]">
+            <LoaderIcon className=" animate-spin" />
+          </div>
+        ) : IconLeft ? (
           <>
             <IconLeft /> {children}
           </>

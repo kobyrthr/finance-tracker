@@ -18,6 +18,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Typography } from '@/components/ui/typography';
 import LogoLargeIcon from '@/../public/assets/images/logo-large.svg';
+import { login } from './actions';
+import { redirect } from 'next/navigation';
 
 const formSchema = z.object({
   email: z.string().email({
@@ -36,6 +38,16 @@ const LoginPage = () => {
       password: '',
     },
   });
+
+  const onLogin = async (formData) => {
+    const { error, ...session } = await login(formData);
+
+    if (error) {
+      form.setError('password', { message: error.message });
+    } else {
+      redirect('/transactions');
+    }
+  };
 
   return (
     <div className="flex flex-col xl:flex-row p-5 size-full">
@@ -83,10 +95,7 @@ const LoginPage = () => {
               </Typography>
             </CardHeader>
             <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit((data) => console.log(data))}
-                className="space-y-4"
-              >
+              <form onSubmit={form.handleSubmit(onLogin)} className="space-y-0">
                 <FormField
                   control={form.control}
                   name="email"

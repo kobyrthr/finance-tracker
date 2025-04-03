@@ -1,6 +1,6 @@
 'use client';
 import { TransactionsContext } from '@/context/transactions-context';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AppSidebar } from '@/components/ui/app-sidebar';
 import { Button } from '@/components/ui/button';
 import {
@@ -31,11 +31,12 @@ import {
   SortAscending,
 } from '@phosphor-icons/react';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { useSidebar } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
+import { useRouter } from 'next/navigation';
+import { isUserAuth } from './actions';
 
 export default function Home() {
-  const { state } = useSidebar();
+  const router = useRouter();
 
   const {
     searchValue,
@@ -142,7 +143,11 @@ export default function Home() {
     setSearchValue(e.target.value);
     setCurrentPage(1);
   };
-  console.log('debug - state', state);
+
+  useEffect(() => {
+    isUserAuth();
+  }, []);
+
   return (
     <div className="max-h-screen overflow-y size-full flex flex-row">
       <AppSidebar />

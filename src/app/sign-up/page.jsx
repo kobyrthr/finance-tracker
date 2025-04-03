@@ -18,11 +18,19 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Typography } from '@/components/ui/typography';
 import LogoLargeIcon from '@/../public/assets/images/logo-large.svg';
+import { supabase } from '@/lib/supabase/client';
+import { useRouter } from 'next/navigation';
+import { signup } from './actions';
 
 const formSchema = z.object({
-  name: z.string().min(2, {
-    message: 'Name must be at least 2 characters long',
-  }),
+  name: z
+    .string()
+    .regex(/^[a-zA-Z\s-]+$/, {
+      message: 'Name must contain only letters, spaces and dashes',
+    })
+    .min(2, {
+      message: 'Name must be at least 2 characters',
+    }),
   email: z.string().email({
     message: 'Please enter a valid email address',
   }),
@@ -32,9 +40,11 @@ const formSchema = z.object({
 });
 
 const SignUpPage = () => {
-  const form = useForm({
+  const { formState, handleSubmit, ...form } = useForm({
+    mode: 'onChange',
     resolver: zodResolver(formSchema),
     defaultValues: {
+      name: '',
       email: '',
       password: '',
     },
@@ -86,16 +96,13 @@ const SignUpPage = () => {
               </Typography>
             </CardHeader>
             <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit((data) => console.log(data))}
-                className="space-y-4"
-              >
+              <form onSubmit={handleSubmit(signup)} className="space-y-0">
                 <FormField
                   control={form.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>Name</FormLabel>
                       <FormControl>
                         <Input type="name" {...field} />
                       </FormControl>
@@ -129,7 +136,11 @@ const SignUpPage = () => {
                     </FormItem>
                   )}
                 />
-                <Button className="w-full mt-4" type="submit">
+                <Button
+                  isLoading={formState.isSubmitting}
+                  className="w-full min-h-12 mt-4"
+                  type="submit"
+                >
                   <Typography type="preset-4-bold">Create Account</Typography>
                 </Button>
               </form>

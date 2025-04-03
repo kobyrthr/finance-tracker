@@ -32,10 +32,7 @@ const InputCalendar = () => {
   const form = useForm({
     resolver: zodResolver(FormSchema),
   });
-  const onSubmit = (data) => {
-    console.log(data);
-    console.log('hello');
-  };
+  const onSubmit = (data) => {};
 
   return (
     <Form {...form}>
